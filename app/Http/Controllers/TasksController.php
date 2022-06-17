@@ -32,7 +32,7 @@ class TasksController extends Controller
     {
         try {
             Tasks::create($request->all());
-            return response()->json(['message' => 'Task created successfully']);
+            return response()->json(['message' => 'Task created successfully'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -62,7 +62,7 @@ class TasksController extends Controller
         try {
             $task = Tasks::findOrFail($id);
             $task->update($request->all());
-            return response()->json(['message' => 'Task updated successfully']);
+            return response()->json(['message' => 'Task updated successfully'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -79,7 +79,7 @@ class TasksController extends Controller
         try {
             $task = Tasks::findOrFail($id);
             $task->delete();
-            return response()->json(['message' => 'Task deleted successfully']);
+            return response()->json(['message' => 'Task deleted successfully'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

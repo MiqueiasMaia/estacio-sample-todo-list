@@ -95,16 +95,16 @@
                 url: "/tasks",
                 success: function (data) {
                     console.log(data);
-                    var table = document.getElementsByTagName('tbody')[0];
-                    table.innerHTML = "";
                     if (data.length > 0) {
+                        const table = document.getElementsByTagName('tbody')[0];
+                        table.innerHTML = "";
                         for (var i = 0; i < data.length; i++) {
                             try {
-                                var row = table.insertRow(i);
-                                var cell1 = row.insertCell(0);
-                                var cell2 = row.insertCell(1);
-                                var cell3 = row.insertCell(2);
-                                var cell4 = row.insertCell(3);
+                                const row = table.insertRow(i);
+                                const cell1 = row.insertCell(0);
+                                const cell2 = row.insertCell(1);
+                                const cell3 = row.insertCell(2);
+                                const cell4 = row.insertCell(3);
                                 cell1.innerHTML = data[i].id;
                                 cell2.innerHTML = data[i].description;
                                 cell3.innerHTML = `<button class="btn btn-primary" onclick="openEditModal(${data[i].id},'${data[i].description}')"><i class="fa fa-edit"></i></button>`;
@@ -127,7 +127,7 @@
         }
 
         function saveTasks() {
-            var task = document.getElementById('taskInput').value;
+            const task = document.getElementById('taskInput').value;
             $.ajax({
                 type: "POST",
                 url: "/tasks",
@@ -150,7 +150,7 @@
         function deleteTask(id) {
             $.ajax({
                 type: "DELETE",
-                url: "/tasks/" + id,
+                url: `/tasks/${id}`,
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -175,7 +175,7 @@
             var description = $('#task-description').val();
             $.ajax({
                 type: "PUT",
-                url: "/tasks/" + id,
+                url: `/tasks/${id}`,
                 data: {
                     description: description
                 },
